@@ -24,11 +24,11 @@ export const CONTACT_INFO = {
 };
 
 export const COLORS = {
-  primary: "#00A4FF", // TechGlow Blue
-  secondary: "#FF00C8", // Magenta Flare
-  accent: "#00FF9D", // Laser Green
-  silver: "#C8D1D8", // Chrome Silver
-  bg: "#06070A", // Deep Black
+  primary: "#FF8A00", // Neon Orange (from logo text)
+  secondary: "#FF00C8", // Neon Magenta
+  accent: "#00F0FF", // Neon Cyan
+  silver: "#C8D1D8", 
+  bg: "#06070A", 
 };
 
 export const NAV_LINKS: NavLink[] = [
@@ -47,7 +47,6 @@ export const SERVICES: ServiceItem[] = [
     title: "Installation Windows",
     description: "Installation propre et optimisation de Windows 10/11 avec drivers à jour.",
     icon: Monitor,
-    // Stable Image: Coding laptop
     image: "https://images.unsplash.com/photo-1587614382346-4ec70e388b28?auto=format&fit=crop&w=800&q=80", 
     category: "blue",
     details: [
@@ -64,7 +63,6 @@ export const SERVICES: ServiceItem[] = [
     title: "Pack Microsoft Office",
     description: "Word, Excel, PowerPoint. Installation complète et activation à vie.",
     icon: Layout,
-    // Stable Image: Office workspace
     image: "https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=800&q=80",
     category: "purple",
     details: [
@@ -80,7 +78,6 @@ export const SERVICES: ServiceItem[] = [
     title: "Logiciels Pro",
     description: "Adobe Suite, AutoCAD, ArchiCAD, Antivirus. Tous vos outils prêts à l'emploi.",
     icon: Cpu,
-    // Stable Image: Creative software screen
     image: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&w=800&q=80",
     category: "blue",
     details: [
@@ -96,7 +93,6 @@ export const SERVICES: ServiceItem[] = [
     title: "Déblocage Mobile",
     description: "Solutions sûres pour débloquer Android et iPhone. iCloud, Google FRP, Réseau.",
     icon: Smartphone,
-    // Stable Image: iPhone repair
     image: "https://images.unsplash.com/photo-1592890288564-76628a30a657?auto=format&fit=crop&w=800&q=80",
     category: "purple",
     details: [
@@ -112,7 +108,6 @@ export const SERVICES: ServiceItem[] = [
     title: "Création Web",
     description: "Sites vitrines et e-commerce modernes, responsive et optimisés SEO.",
     icon: Globe,
-    // Stable Image: Web code
     image: "https://images.unsplash.com/photo-1547658719-da2b51169166?auto=format&fit=crop&w=800&q=80",
     category: "blue",
     details: [
@@ -129,7 +124,6 @@ export const SERVICES: ServiceItem[] = [
     title: "Licences Digitales",
     description: "Clés officielles Windows, Office et Antivirus à prix imbattables.",
     icon: Key,
-    // Stable Image: Digital security
     image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=800&q=80",
     category: "purple",
     details: [
@@ -149,7 +143,6 @@ export const DIGITAL_PRODUCTS: DigitalProduct[] = [
     description: "Le guide complet pour optimiser, sécuriser et maîtriser votre système d'exploitation comme un pro.",
     priceEUR: "10€",
     priceFCFA: "6 500 FCFA",
-    // Stable Image: Windows 11 Wallpaper style
     image: "https://images.unsplash.com/photo-1618401479427-c8ef9465fbe1?auto=format&fit=crop&w=600&q=80",
     badge: "Best Seller",
     details: [
@@ -166,7 +159,6 @@ export const DIGITAL_PRODUCTS: DigitalProduct[] = [
     description: "De débutant à expert : Formules, tableaux croisés dynamiques et macros expliqués simplement.",
     priceEUR: "15€",
     priceFCFA: "10 000 FCFA",
-    // Stable Image: Spreadsheet data
     image: "https://images.unsplash.com/photo-1543286386-2e659306cd6c?auto=format&fit=crop&w=600&q=80",
     badge: "Formation Vidéo",
     details: [
@@ -183,7 +175,6 @@ export const DIGITAL_PRODUCTS: DigitalProduct[] = [
     description: "Comment protéger efficacement vos données personnelles et professionnelles contre les cybermenaces.",
     priceEUR: "8€",
     priceFCFA: "5 200 FCFA",
-    // Stable Image: Cyber security lock
     image: "https://images.unsplash.com/photo-1563986768494-4dee2763ff3f?auto=format&fit=crop&w=600&q=80",
     details: [
       "Comprendre les types de virus et malwares",
@@ -199,7 +190,6 @@ export const DIGITAL_PRODUCTS: DigitalProduct[] = [
     description: "Guide technique pour diagnostiquer et résoudre les problèmes logiciels courants sur Android et iOS.",
     priceEUR: "20€",
     priceFCFA: "13 000 FCFA",
-    // Stable Image: Mobile repair
     image: "https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?auto=format&fit=crop&w=600&q=80",
     badge: "Nouveau",
     details: [

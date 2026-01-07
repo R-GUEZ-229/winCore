@@ -1,3 +1,4 @@
+
 import React from 'react';
 import Header from './components/Header';
 import Hero from './components/Hero';
@@ -12,6 +13,7 @@ import Testimonials from './components/Testimonials';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import FloatingWhatsApp from './components/FloatingWhatsApp';
+import ChatBot from './components/ChatBot';
 
 const App: React.FC = () => {
   return (
@@ -31,6 +33,7 @@ const App: React.FC = () => {
       </main>
       <Footer />
       <FloatingWhatsApp />
+      <ChatBot />
     </div>
   );
 };

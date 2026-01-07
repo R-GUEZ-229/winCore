@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { PRICING_DATA } from '../constants';
 import { SectionTitle, Button, GlassCard } from './UiElements';
@@ -6,8 +7,8 @@ import { Check } from 'lucide-react';
 const Pricing: React.FC = () => {
   return (
     <section id="pricing" className="py-24 relative overflow-hidden">
-        {/* Background Gradients */}
-      <div className="absolute top-1/2 left-0 w-full h-[500px] bg-gradient-to-r from-[#00A4FF]/5 to-[#FF00C8]/5 transform -skew-y-3 pointer-events-none"></div>
+        {/* Background Gradients Updated */}
+      <div className="absolute top-1/2 left-0 w-full h-[500px] bg-gradient-to-r from-[#FF8A00]/5 to-[#00F0FF]/5 transform -skew-y-3 pointer-events-none"></div>
 
       <div className="container mx-auto px-4 relative z-10">
         <SectionTitle 
@@ -19,24 +20,24 @@ const Pricing: React.FC = () => {
           {PRICING_DATA.map((item, index) => (
             <GlassCard 
                 key={index} 
-                className={`flex flex-col relative ${item.popular ? 'border-[#00A4FF] shadow-[0_0_20px_rgba(0,164,255,0.15)]' : ''}`}
+                className={`flex flex-col relative ${item.popular ? 'border-[#FF8A00] shadow-[0_0_20px_rgba(255,138,0,0.15)]' : ''}`}
             >
               {item.popular && (
-                <div className="absolute top-0 right-0 bg-[#00A4FF] text-white text-xs font-bold px-3 py-1 rounded-bl-lg">
+                <div className="absolute top-0 right-0 bg-[#FF8A00] text-white text-xs font-bold px-3 py-1 rounded-bl-lg">
                   POPULAIRE
                 </div>
               )}
               
               <h3 className="text-lg font-bold text-white mb-1">{item.service}</h3>
               <div className="my-4">
-                <span className="text-3xl font-bold text-[#00A4FF]">{item.priceEUR}</span>
+                <span className="text-3xl font-bold text-[#FF8A00]">{item.priceEUR}</span>
                 <p className="text-sm text-[#C8D1D8] mt-1">{item.priceFCFA}</p>
               </div>
               
               <ul className="flex-1 space-y-3 mb-6">
                 {item.features?.map((feat, i) => (
                   <li key={i} className="flex items-center gap-2 text-sm text-[#C8D1D8]">
-                    <Check className="w-4 h-4 text-[#00FF9D]" /> {feat}
+                    <Check className="w-4 h-4 text-[#FF8A00]" /> {feat}
                   </li>
                 ))}
               </ul>
