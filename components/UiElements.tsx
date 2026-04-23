@@ -1,6 +1,42 @@
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { X, CheckCircle } from 'lucide-react';
+
+// --- Reveal Component for smooth scroll animations ---
+export const Reveal: React.FC<{ children: React.ReactNode; width?: "fit-content" | "100%" }> = ({ children, width = "100%" }) => {
+  const ref = useRef(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.unobserve(entry.target);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div ref={ref} style={{ width, position: "relative", overflow: "hidden" }}>
+      <div
+        className={`transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+          isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-20"
+        }`}
+      >
+        {children}
+      </div>
+    </div>
+  );
+};
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'primary' | 'secondary' | 'outline' | 'ghost';
@@ -15,7 +51,7 @@ export const Button: React.FC<ButtonProps> = ({
   className = '', 
   ...props 
 }) => {
-  const baseStyle = "px-6 py-3 rounded-full font-bold transition-all duration-300 transform hover:-translate-y-1 relative overflow-hidden group";
+  const baseStyle = "px-6 py-3 rounded-full font-bold transition-all duration-300 transform hover:-translate-y-1 relative overflow-hidden group active:scale-95";
   
   const variants = {
     primary: `bg-[#FF8A00] text-white hover:bg-[#e67c00] ${glow ? 'tech-glow-orange' : ''}`,
@@ -57,12 +93,11 @@ export const GlassCard: React.FC<{
   return (
     <div 
         onClick={onClick}
-        className={`glass-panel p-6 rounded-2xl relative overflow-hidden transition-all duration-300 ${hoverEffect ? 'hover:border-[#FF8A00]/30 hover:shadow-[0_0_30px_rgba(255,138,0,0.1)]' : ''} ${onClick ? 'cursor-pointer' : ''} ${className}`}
+        className={`glass-panel p-6 rounded-2xl relative overflow-hidden transition-all duration-500 ${hoverEffect ? 'hover:border-[#FF8A00]/40 hover:shadow-[0_0_40px_rgba(255,138,0,0.15)] hover:-translate-y-2' : ''} ${onClick ? 'cursor-pointer' : ''} ${className}`}
     >
       {children}
-      {/* Decorative corner accents */}
-      <div className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-bl from-[#FF8A00]/10 to-transparent pointer-events-none"></div>
-      <div className="absolute bottom-0 left-0 w-16 h-16 bg-gradient-to-tr from-[#00F0FF]/10 to-transparent pointer-events-none"></div>
+      <div className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-bl from-[#FF8A00]/10 to-transparent pointer-events-none transition-opacity duration-500 group-hover:opacity-100 opacity-50"></div>
+      <div className="absolute bottom-0 left-0 w-16 h-16 bg-gradient-to-tr from-[#00F0FF]/10 to-transparent pointer-events-none transition-opacity duration-500 group-hover:opacity-100 opacity-50"></div>
     </div>
   );
 };
@@ -92,24 +127,19 @@ export const Modal: React.FC<ModalProps> = ({ isOpen, onClose, title, children }
     return (
         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
             <div 
-                className="absolute inset-0 bg-black/80 backdrop-blur-sm transition-opacity duration-300"
+                className="absolute inset-0 bg-black/90 backdrop-blur-md transition-opacity duration-500"
                 onClick={onClose}
             ></div>
-            <div className={`relative w-full max-w-2xl bg-[#0A0C10] border border-white/10 rounded-2xl shadow-2xl overflow-hidden transform transition-all duration-300 ${animate ? 'scale-100 opacity-100' : 'scale-95 opacity-0'}`}>
-                {/* Header */}
+            <div className={`relative w-full max-w-2xl bg-[#0A0C10] border border-white/10 rounded-2xl shadow-2xl overflow-hidden transform transition-all duration-500 ${animate ? 'scale-100 opacity-100' : 'scale-95 opacity-0'}`}>
                 <div className="flex justify-between items-center p-6 border-b border-white/5 bg-gradient-to-r from-[#FF8A00]/10 to-transparent">
                     <h3 className="text-2xl font-bold text-white">{title}</h3>
                     <button onClick={onClose} className="p-2 rounded-full hover:bg-white/10 text-white transition-colors">
                         <X className="w-6 h-6" />
                     </button>
                 </div>
-                
-                {/* Body */}
                 <div className="p-6 max-h-[70vh] overflow-y-auto custom-scrollbar">
                     {children}
                 </div>
-
-                {/* Footer */}
                 <div className="p-6 border-t border-white/5 bg-[#06070A] flex justify-end gap-3">
                     <Button variant="ghost" onClick={onClose} className="text-sm">Fermer</Button>
                     <Button 
@@ -129,12 +159,12 @@ export const Modal: React.FC<ModalProps> = ({ isOpen, onClose, title, children }
 
 export const WinCoreLogo: React.FC<{ className?: string; size?: number }> = ({ className, size = 95 }) => (
   <div className={`flex items-center overflow-visible select-none pointer-events-none relative group ${className}`}>
-    {/* Background bloom effect */}
     <div className="absolute inset-0 bg-[#FF8A00]/5 blur-2xl rounded-full scale-150 opacity-50 group-hover:opacity-100 transition-opacity duration-700"></div>
     
     <img 
       src="https://i.imgur.com/5RcABTE.png" 
       alt="WinCore Logo" 
+      loading="lazy"
       style={{
         height: `${size}px`,
         width: 'auto',
@@ -154,7 +184,6 @@ export const WinCoreLogo: React.FC<{ className?: string; size?: number }> = ({ c
       }}
     />
     
-    {/* High-tech sweep light effect */}
     <div className="absolute inset-0 z-20 pointer-events-none overflow-hidden mix-blend-overlay opacity-30">
         <div className="w-1/2 h-full bg-gradient-to-r from-transparent via-white/40 to-transparent -skew-x-45 animate-logo-sweep"></div>
     </div>
